@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encuesta de Satisfacción - Sala de Cómputo F3 | Centro Agropecuario de Buga</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body class="py-8 px-4 sm:px-6 lg:px-8 text-slate-800">
+  <div class="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-slate-100">
+    
+    <!-- Encabezado Institucional -->
+    <div class="bg-gradient-to-r from-emerald-700 via-teal-800 to-emerald-900 text-white p-6 sm:p-8">
+      <div class="flex items-center justify-between mb-4">
+        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-500/30 text-emerald-100 border border-emerald-400/30">
+          SENA • Regional Valle
+        </span>
+        <span class="text-xs text-emerald-200">Ambiente de Cómputo F3</span>
+      </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight">
+        Encuesta de Satisfacción Sala F3
+      </h1>
+      <p class="mt-2 text-sm text-emerald-100 leading-relaxed">
+        Centro Agropecuario de Buga (CAB). Tu opinión es fundamental para mejorar la infraestructura tecnológica, la conectividad y el confort en nuestras sesiones de formación.
+      </p>
+    </div>
+
+    <!-- Barra de Estado / Configuración de Google Sheets -->
+    <div class="bg-slate-50 border-b border-slate-200 px-6 py-3 flex items-center justify-between text-xs text-slate-600">
+      <span class="flex items-center gap-1.5 font-medium">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        Sincronización a Google Sheets
+      </span>
+      <span class="text-slate-400">Máximo 10 preguntas</span>
+    </div>
+
+    <!-- Formulario Principal -->
+    <form id="surveyForm" class="p-6 sm:p-8 space-y-8">
+
+      <!-- URL de Google Apps Script (Configurable) -->
+      <div class="bg-emerald-50/70 border border-emerald-200 rounded-xl p-4 text-xs">
+        <label for="scriptUrl" class="block font-semibold text-emerald-900 mb-1">
+          URL Web App de Google Apps Script:
+        </label>
+        <input 
+          type="url" 
+          id="scriptUrl" 
+          name="scriptUrl" 
+          placeholder="https://script.google.com/macros/s/.../exec"
+          class="w-full px-3 py-2 border border-emerald-300 rounded-lg text-slate-800 bg-white focus:ring-2 focus:ring-emerald-500 focus:outline-none"
+        />
+        <p class="text-emerald-700 mt-1 text-[11px]">
+          * Pega aquí la URL Web App generada en tu Google Sheet para enviar las respuestas automáticamente a la hoja.
+        </p>
+      </div>
+
+      <!-- Pregunta 1 -->
+      <div class="space-y-2">
+        <label class="block text-sm font-bold text-slate-900">
+          1. ¿Cuál es tu relación con el Centro Agropecuario de Buga? <span class="text-rose-500">*</span>
+        </label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+          <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+            <input type="radio" name="role" value="Aprendiz" required checked class="text-emerald-600 focus:ring-emerald-500">
+            <span class="ml-2.5 font-medium">Aprendiz</span>
+          </label>
+          <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+            <input type="radio" name="role" value="Instructor" class="text-emerald-600 focus:ring-emerald-500">
+            <span class="ml-2.5 font-medium">Instructor</span>
+          </label>
+          <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+            <input type="radio" name="role" value="Administrativo" class="text-emerald-600 focus:ring-emerald-500">
+            <span class="ml-2.5 font-medium">Administrativo / Apoyo</span>
+          </label>
+          <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer transition">
+            <input type="radio" name="role" value="Visitante / Externo" class="text-emerald-600 focus:ring-emerald-500">
+            <span class="ml-2.5 font-medium">Egresado / Visitante</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="space-y-2">
+        <label class="block text-sm font-bold text-slate-900">
+          2. ¿Con qué frecuencia utilizas el ambiente F3? <span class="text-rose-500">*</span>
+        </label>
+        <select name="frequency" required class="w-full px-3 py-2.5 rounded-lg border border-slate-200 bg-white text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+          <option value="" disabled>Selecciona una frecuencia...</option>
+          <option value="Todos los días">Todos los días</option>
+          <option value="2 a 3 veces por semana" selected>2 a 3 veces por semana</option>
+          <option value="Una vez por semana">Una vez por semana</option>
+          <option value="Ocasionalmente">Ocasionalmente</option>
+          <option value="Primera vez">Primera vez</option>
+        </select>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="space-y-2">
+        <label class="block text-sm font-bold text-slate-900">
+          3. ¿Para qué utilizas principalmente la sala F3? <span class="text-rose-500">*</span>
+        </label>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+          <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="radio" name="purpose" value="Formación académica / Clases" checked required class="text-emerald-600">
+            <span class="ml-2.5">Clases y formación técnica</span>
+          </label>
+          <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="radio" name="purpose" value="Investigaciones y proyectos" class="text-emerald-600">
+            <span class="ml-2.5">Investigaciones y proyectos</span>
+          </label>
+          <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="radio" name="purpose" value="Evaluaciones y pruebas" class="text-emerald-600">
+            <span class="ml-2.5">Evaluaciones y exámenes</span>
+          </label>
+          <label class="flex items-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="radio" name="purpose" value="Trabajo autónomo y consultas" class="text-emerald-600">
+            <span class="ml-2.5">Trabajo autónomo y práctica libre</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Pregunta 4 -->
+      <div class="space-y-2 p-4 bg-slate-50 rounded-xl border border-slate-200">
+        <label class="block text-sm font-bold text-slate-900">
+          4. Disponibilidad y estado de los equipos de cómputo (PCs, periféricos) <span class="text-rose-500">*</span>
+        </label>
+        <p class="text-xs text-slate-500">1: Muy deficiente, 3: Aceptable, 5: Excelente</p>
+        <div class="flex items-center justify-between max-w-sm pt-2">
+          <label class="text-center cursor-pointer"><input type="radio" name="equipmentRating" value="1" required class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">1 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="equipmentRating" value="2" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">2 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="equipmentRating" value="3" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">3 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="equipmentRating" value="4" checked class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">4 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="equipmentRating" value="5" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">5 ★</span></label>
+        </div>
+      </div>
+
+      <!-- Pregunta 5 -->
+      <div class="space-y-2 p-4 bg-slate-50 rounded-xl border border-slate-200">
+        <label class="block text-sm font-bold text-slate-900">
+          5. Calidad y velocidad de la conectividad a Internet <span class="text-rose-500">*</span>
+        </label>
+        <p class="text-xs text-slate-500">1: Muy lenta/inestable, 5: Rápida y constante</p>
+        <div class="flex items-center justify-between max-w-sm pt-2">
+          <label class="text-center cursor-pointer"><input type="radio" name="internetRating" value="1" required class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">1 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="internetRating" value="2" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">2 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="internetRating" value="3" checked class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">3 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="internetRating" value="4" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">4 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="internetRating" value="5" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">5 ★</span></label>
+        </div>
+      </div>
+
+      <!-- Pregunta 6 -->
+      <div class="space-y-2 p-4 bg-slate-50 rounded-xl border border-slate-200">
+        <label class="block text-sm font-bold text-slate-900">
+          6. Condiciones ambientales (Iluminación, climatización y ventilación) <span class="text-rose-500">*</span>
+        </label>
+        <p class="text-xs text-slate-500">1: Inadecuada/calurosa, 5: Muy fresca y cómoda</p>
+        <div class="flex items-center justify-between max-w-sm pt-2">
+          <label class="text-center cursor-pointer"><input type="radio" name="environmentRating" value="1" required class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">1 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="environmentRating" value="2" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">2 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="environmentRating" value="3" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">3 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="environmentRating" value="4" checked class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">4 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="environmentRating" value="5" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">5 ★</span></label>
+        </div>
+      </div>
+
+      <!-- Pregunta 7 -->
+      <div class="space-y-2 p-4 bg-slate-50 rounded-xl border border-slate-200">
+        <label class="block text-sm font-bold text-slate-900">
+          7. Comodidad del mobiliario y espacio (sillas, mesas y distribución) <span class="text-rose-500">*</span>
+        </label>
+        <div class="flex items-center justify-between max-w-sm pt-2">
+          <label class="text-center cursor-pointer"><input type="radio" name="furnitureRating" value="1" required class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">1 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="furnitureRating" value="2" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">2 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="furnitureRating" value="3" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">3 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="furnitureRating" value="4" checked class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">4 ★</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="furnitureRating" value="5" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs">5 ★</span></label>
+        </div>
+      </div>
+
+      <!-- Pregunta 8 -->
+      <div class="space-y-2 p-4 bg-emerald-50 rounded-xl border border-emerald-200">
+        <label class="block text-sm font-bold text-emerald-950">
+          8. En general, ¿qué tan satisfecho estás con el ambiente F3? <span class="text-rose-500">*</span>
+        </label>
+        <div class="flex items-center justify-between max-w-sm pt-2">
+          <label class="text-center cursor-pointer"><input type="radio" name="overallSatisfaction" value="1" required class="block mx-auto mb-1 text-emerald-600"><span class="text-xs font-semibold">1 (Bajo)</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="overallSatisfaction" value="2" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs font-semibold">2</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="overallSatisfaction" value="3" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs font-semibold">3 (Medio)</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="overallSatisfaction" value="4" checked class="block mx-auto mb-1 text-emerald-600"><span class="text-xs font-semibold">4</span></label>
+          <label class="text-center cursor-pointer"><input type="radio" name="overallSatisfaction" value="5" class="block mx-auto mb-1 text-emerald-600"><span class="text-xs font-semibold">5 (Alto)</span></label>
+        </div>
+      </div>
+
+      <!-- Pregunta 9 -->
+      <div class="space-y-2">
+        <label class="block text-sm font-bold text-slate-900">
+          9. ¿Recomendarías el ambiente F3 para actividades de formación? <span class="text-rose-500">*</span>
+        </label>
+        <div class="grid grid-cols-3 gap-2 text-sm">
+          <label class="flex items-center justify-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="radio" name="recommendation" value="Sí" checked required class="text-emerald-600">
+            <span class="ml-2 font-medium text-emerald-800">Sí</span>
+          </label>
+          <label class="flex items-center justify-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="radio" name="recommendation" value="Tal vez" class="text-amber-600">
+            <span class="ml-2 font-medium text-amber-800">Tal vez</span>
+          </label>
+          <label class="flex items-center justify-center p-3 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="radio" name="recommendation" value="No" class="text-rose-600">
+            <span class="ml-2 font-medium text-rose-800">No</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Pregunta 10 -->
+      <div class="space-y-3">
+        <label class="block text-sm font-bold text-slate-900">
+          10. ¿Qué aspectos consideras que necesitan mejorar y qué sugerencias tienes?
+        </label>
+        <p class="text-xs text-slate-500">Selecciona los aspectos clave:</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+          <label class="flex items-center p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="checkbox" name="aspects" value="Velocidad de Internet / Conectividad" class="rounded text-emerald-600">
+            <span class="ml-2">Velocidad de Internet / Red WiFi</span>
+          </label>
+          <label class="flex items-center p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="checkbox" name="aspects" value="Equipos / Computadores" class="rounded text-emerald-600">
+            <span class="ml-2">Potencia o estado de los PCs</span>
+          </label>
+          <label class="flex items-center p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="checkbox" name="aspects" value="Aire acondicionado / Ventilación" class="rounded text-emerald-600">
+            <span class="ml-2">Aire acondicionado / Clima</span>
+          </label>
+          <label class="flex items-center p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="checkbox" name="aspects" value="Mobiliario y sillas ergonómicas" class="rounded text-emerald-600">
+            <span class="ml-2">Comodidad de sillas y mesas</span>
+          </label>
+          <label class="flex items-center p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="checkbox" name="aspects" value="Software y licencias instaladas" class="rounded text-emerald-600">
+            <span class="ml-2">Programas y herramientas de software</span>
+          </label>
+          <label class="flex items-center p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+            <input type="checkbox" name="aspects" value="No considero necesario realizar mejoras" class="rounded text-emerald-600">
+            <span class="ml-2 text-slate-600">Todo está en orden (sin mejoras)</span>
+          </label>
+        </div>
+
+        <textarea 
+          name="suggestions" 
+          rows="3" 
+          placeholder="Escribe aquí tus sugerencias o comentarios específicos para la sala F3..."
+          class="w-full mt-2 p-3 text-sm border border-slate-200 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:outline-none placeholder:text-slate-400"
+        ></textarea>
+      </div>
+
+      <!-- Alertas de Envío -->
+      <div id="statusAlert" class="hidden p-4 rounded-xl text-sm font-medium"></div>
+
+      <!-- Botón de Envío -->
+      <div class="pt-4">
+        <button 
+          type="submit" 
+          id="submitBtn"
+          class="w-full py-3.5 px-6 rounded-xl font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] transition shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 cursor-pointer"
+        >
+          <span id="btnText">Enviar respuestas a Google Sheets</span>
+          <svg id="btnSpinner" class="hidden animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+        </button>
+      </div>
+
+    </form>
+
+    <div class="p-6 bg-slate-50 border-t border-slate-100 text-center text-xs text-slate-400">
+      Centro Agropecuario de Buga • Ambiente F3 • Formulario compatible con Google Sheets
+    </div>
+
+  </div>
+
+  <script>
+    const form = document.getElementById('surveyForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const statusAlert = document.getElementById('statusAlert');
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const aspects = Array.from(form.querySelectorAll('input[name="aspects"]:checked')).map(cb => cb.value);
+      const scriptUrl = formData.get('scriptUrl')?.trim();
+
+      const payload = {
+        timestamp: new Date().toLocaleString('es-CO', { timeZone: 'America/Bogota' }),
+        role: formData.get('role'),
+        frequency: formData.get('frequency'),
+        purpose: formData.get('purpose'),
+        equipmentRating: formData.get('equipmentRating'),
+        internetRating: formData.get('internetRating'),
+        environmentRating: formData.get('environmentRating'),
+        furnitureRating: formData.get('furnitureRating'),
+        overallSatisfaction: formData.get('overallSatisfaction'),
+        recommendation: formData.get('recommendation'),
+        aspectsToImprove: aspects.length > 0 ? aspects.join('; ') : 'Ninguno',
+        suggestions: formData.get('suggestions') || 'Sin comentarios'
+      };
+
+      payload.rowValues = [
+        payload.timestamp,
+        payload.role,
+        payload.frequency,
+        payload.purpose,
+        payload.equipmentRating,
+        payload.internetRating,
+        payload.environmentRating,
+        payload.furnitureRating,
+        payload.overallSatisfaction,
+        payload.recommendation,
+        payload.aspectsToImprove,
+        payload.suggestions
+      ];
+
+      submitBtn.disabled = true;
+      btnSpinner.classList.remove('hidden');
+      btnText.textContent = 'Enviando a Google Sheets...';
+      statusAlert.className = 'hidden';
+
+      try {
+        if (scriptUrl) {
+          await fetch(scriptUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          statusAlert.className = 'p-4 rounded-xl text-sm font-medium bg-emerald-100 text-emerald-800 border border-emerald-300 block';
+          statusAlert.innerHTML = '¡Muchas gracias! Tu respuesta fue registrada exitosamente en la hoja de cálculo de Google.';
+        } else {
+          const stored = JSON.parse(localStorage.getItem('encuesta_f3_buga') || '[]');
+          stored.push(payload);
+          localStorage.setItem('encuesta_f3_buga', JSON.stringify(stored));
+
+          statusAlert.className = 'p-4 rounded-xl text-sm font-medium bg-amber-100 text-amber-800 border border-amber-300 block';
+          statusAlert.innerHTML = '¡Respuesta guardada localmente! (Para enviarla directamente a Google Sheets, introduce la URL del Apps Script arriba).';
+        }
+
+        form.reset();
+        window.scrollTo({ top: form.offsetTop, behavior: 'smooth' });
+
+      } catch (err) {
+        statusAlert.className = 'p-4 rounded-xl text-sm font-medium bg-rose-100 text-rose-800 border border-rose-300 block';
+        statusAlert.innerHTML = 'Ocurrió un inconveniente al enviar la información: ' + err.message;
+      } finally {
+        submitBtn.disabled = false;
+        btnSpinner.classList.add('hidden');
+        btnText.textContent = 'Enviar respuestas a Google Sheets';
+      }
+    });
+  </script>
+</body>
+</html>
